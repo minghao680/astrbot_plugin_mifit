@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+.env
+
+# 会话、二维码、图表都是本地运行时产生的，绝不能提交
+session.json
+.mifit/
+qr/
+charts/
+data/

@@ -1,0 +1,6 @@
+name: astrbot_plugin_mifit
+display_name: 小米运动健康
+desc: 读小米运动健康（Mi Fitness）云端的手环数据——睡眠、步数、心率、血氧、压力，扫码登录一次后本地留存会话。
+version: v0.1.0
+author: 明毫
+repo: ""

@@ -1,0 +1,24 @@
+{
+  "session_path": {
+    "type": "string",
+    "description": "会话文件路径",
+    "hint": "扫码登录后会话存这里，含 token，别提交到仓库",
+    "default": ""
+  },
+  "default_days": {
+    "type": "int",
+    "description": "默认回看天数",
+    "default": 7
+  },
+  "timezone": {
+    "type": "string",
+    "description": "日期用的时区",
+    "hint": "容器默认可能是 UTC，不设成 Asia/Shanghai 会把跨零点的睡眠算到前一天",
+    "default": "Asia/Shanghai"
+  },
+  "max_rows": {
+    "type": "int",
+    "description": "单次返回最大天数",
+    "default": 30
+  }
+}
