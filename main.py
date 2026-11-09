@@ -183,15 +183,18 @@ def _fmt_score(rows: list[dict[str, Any]]) -> str:
         long_eval = row.get("long_sleep_evaluation")
         if long_eval is not None:
             bits.append(f"长睡评估{long_eval}")
-        seg = row.get("segment_details") or []
-        if isinstance(seg, list) and seg and isinstance(seg[0], dict):
-            first = seg[0]
-            bed, wake = first.get("bedtime"), first.get("wake_up_time")
+        # 一天可能有多段（主睡眠 + 午睡），取时长最长的当主睡眠
+        segs = [x for x in (row.get("segment_details") or []) if isinstance(x, dict)]
+        if segs:
+            main = max(segs, key=lambda x: x.get("duration") or 0)
+            bed, wake = main.get("bedtime"), main.get("wake_up_time")
             if bed and wake:
                 bits.append(
                     f"{datetime.fromtimestamp(int(bed)).strftime('%H:%M')}"
                     f"-{datetime.fromtimestamp(int(wake)).strftime('%H:%M')}"
                 )
+            if len(segs) > 1:
+                bits.append(f"另有{len(segs) - 1}段小睡")
         lines.append(f"{date} " + " ".join(bits))
     return "\n".join(lines)
 
